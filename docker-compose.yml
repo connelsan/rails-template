@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./.docker/rails/Dockerfile
-    command: rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/app
     working_dir: /app
@@ -17,7 +17,9 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: rails_templete_dev
+      MYSQL_USER: root
     ports:
       - "3306:3306"
     volumes:
