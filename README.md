@@ -67,3 +67,40 @@ require 'schemas/users.schema.rb'
 
 #### 参考
 - https://jpndev.com/post/672124
+
+## RuboCop
+https://rubocop.org/
+
+### 使用方法
+#### 1. Gemfileに書く
+```ruby
+gem 'rubocop', require: false
+gem "rubocop-performance", require: false
+gem "rubocop-rails", require: false
+gem "rubocop-rspec", require: false
+```
+
+#### 2. imageの更新
+`docker-compose build --no-cache`
+
+#### 3. 必要なファイルの生成
+`docker-compose run --rm rails rubocop --auto-gen-config`
+
+#### 4. 設定ファイルの更新
+```yaml
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+```
+
+#### 5. 使用してみる
+`docker-compose run --rm rails rubocop`
+
+#### 参考
+- https://nishinatoshiharu.com/insatall-rubocop/
