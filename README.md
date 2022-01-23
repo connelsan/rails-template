@@ -32,13 +32,13 @@ https://github.com/ridgepole/ridgepole
 #### 1. Gemfileに書く
 `gem 'ridgepole', '~> 1'`
 
+※ バージョンは任意
+
 #### 2. imageの更新
 `docker-compose build --no-cache`
 
 #### 3. スキーマの作成
 ここでは`Schemafile`はディレクトリで管理します。Rakeコマンドにしてしまうのもいいかもしれません。
-
-参考：https://jpndev.com/post/672124
 
 `docker-compose run --rm rails bundle exec ridgepole -c ./config/database.yml --export -o ./db/Schemafile`
 
@@ -64,3 +64,6 @@ require 'schemas/users.schema.rb'
 適用。
 
 `docker-compose run --rm rails bundle exec ridgepole -c ./config/database.yml --file ./db/Schemafile --apply`
+
+#### 参考
+- https://jpndev.com/post/672124
